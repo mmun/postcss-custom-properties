@@ -61,7 +61,7 @@ function resolveValue(value, variables, result, decl) {
     }
 
     // prepend with fallbacks
-    if (fallback) {
+    if (variable && fallback) {
       // resolve fallback values
       fallback = resolveValue(fallback, variables, result, decl)
       // resolve the end of the expression before the rest
@@ -74,6 +74,7 @@ function resolveValue(value, variables, result, decl) {
     }
 
     if (!variable) {
+      results.push('var(' + matches.body + ')');
       return
     }
 
